@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Metadata and global settings -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snail City Elite</title>
+
+  <!-- =========================================
+       SITE META + FAVICON
+       ========================================= -->
+  <link rel="icon" href="assets/sce-logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/sce-logo.png">
+
+  <!-- Basic SEO -->
+  <meta name="description" content="Snail City Elite is a personal creative hub featuring coding projects, ideas, playlists, and digital creations by Tyson Gibson-Bale.">
+  <meta name="author" content="Tyson Gibson-Bale">
+  <meta name="keywords" content="Snail City Elite, web development, coding projects, creative portfolio, music, ideas">
+
+  <!-- Open Graph (social link previews) -->
+  <meta property="og:title" content="TBD">
+  <meta property="og:description" content="TBD">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="TBD">
+  <meta property="og:image" content="TBD">
+
+  <!-- Twitter / X cards -->
+  <meta name="twitter:card" content="TBD">
+  <meta name="twitter:title" content="TBD">
+  <meta name="twitter:description" content="TBD">
+  <meta name="twitter:image" content="TBD">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a class="sr-only" href="#main">Skip to content</a>
+
+  <!-- =========================================
+       NAVIGATION BAR
+       ========================================= -->
+  <nav class="nav" aria-label="Primary">
+    <div class="wrapper nav__bar">
+      <!-- Mobile hamburger button -->
+      <button class="hamburger" id="openDrawer" aria-label="Open menu"><span></span></button>
+
+      <!-- Left-side tabs (visible to screen readers) -->
+      <div class="nav__group">
+        <a class="nav__link is-active" aria-current="page" href="index.html">Home</a>
+        <a class="nav__link" href="discover.html">Discover</a>
+        <a class="nav__link" href="think.html">Think</a>
+      </div>
+
+      <!-- Center logo -->
+      <a class="nav__logo" href="index.html" aria-label="Go to home">
+        <img src="assets/sce-logo.png" alt="Snail City Elite logo" decoding="async" width="36" height="36">
+      </a>
+
+      <!-- Right-side tabs (visible to screen readers) -->
+      <div class="nav__group">
+        <a class="nav__link" href="create.html">Create</a>
+        <a class="nav__link" href="enjoy.html">Enjoy</a>
+        <a class="nav__link" href="suggestions.html">Suggestions</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================
+       MOBILE DRAWER MENU
+       ========================================= -->
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__close">
+      <strong>Menu</strong>
+      <button id="closeDrawer" aria-label="Close menu" style="background:transparent;border:1px solid var(--line);color:var(--text);padding:.4rem .6rem;border-radius:10px">Close</button>
+    </div>
+    <ul>
+      <li><a href="index.html" class="drawer__link is-active" aria-current="page">Home</a></li>
+      <li><a href="discover.html" class="drawer__link">Discover</a></li>
+      <li><a href="create.html" class="drawer__link">Create</a></li>
+      <li><a href="enjoy.html" class="drawer__link">Enjoy</a></li>
+      <li><a href="think.html" class="drawer__link">Think</a></li>
+      <li><a href="suggestions.html" class="drawer__link">Suggestions</a></li>
+    </ul>
+  </aside>
+
+  <!-- =========================================
+       MAIN CONTENT
+       ========================================= -->
+  <main id="main">
+    <!-- Hero -->
+    <section id="home" class="hero wrapper" aria-label="Welcome">
+      <div class="hero__panel mood-pulse">
+        <div class="hero__header">
+          <h1 class="hero__title">Welcome</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section class="features wrapper fade-in" aria-label="Featured">
+      <p style="color:var(--muted);margin:0 0 10px 2px">Featured bits</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Think — TBD</h3>
+          <p>TBD <a href="think.html">Read in Think</a></p>
+        </article>
+        <article class="card">
+          <h3>Create — TBD</h3>
+          <p>TBD <a href="create.html">See in Create</a></p>
+        </article>
+        <article class="card">
+          <h3>Enjoy — TBD</h3>
+          <p>TBD <a href="enjoy.html">Open in Enjoy</a></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+  <footer>
+    <div class="wrapper">
+      Snail City Elite | Powered by HTML, CSS, & Bad Sleeping Habits | Click Me?
+    </div>
+  </footer>
+
+  <!-- =========================================
+       JAVASCRIPT
+       ========================================= -->
+
+  <script>
+    /* Drawer menu controls */
+    const drawer = document.getElementById('drawer');
+    const openBtn = document.getElementById('openDrawer');
+    const closeBtn = document.getElementById('closeDrawer');
+
+    function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+    function closeDrawerFn(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
+
+    openBtn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawerFn);
+    drawer.addEventListener('click', (e)=>{ if(e.target.matches('.drawer__link')) closeDrawerFn(); });
+
+    /* Smooth scrolling for #anchors */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+
+  <!-- Fade-in on scroll -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Page fade between navigations -->
+  <script>
+    document.querySelectorAll('a[href]').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href') || '';
+        if (!href) return;
+        const newTab     = link.target === '_blank';
+        const isAnchor   = href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href === 'javascript:void(0)';
+        const isExternal = href.startsWith('http') && !href.includes(location.host);
+        if (newTab || isAnchor || isExternal) return;
+        e.preventDefault();
+        document.body.classList.add('fade-out');
+        setTimeout(() => window.location = href, 300);
+      });
+    });
+  </script>
+</body>
+</html>
